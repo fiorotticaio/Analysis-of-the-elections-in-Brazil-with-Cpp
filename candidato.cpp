@@ -1,5 +1,31 @@
 #include "candidato.h"
 
+candidato::candidato(
+    const int &cdCargo,
+    const int &cdDetalheSituacaoCand,
+    const int &nrCandidato,
+    const string &nmUrnaCandidato,
+    const int &nrPartidoCandidato,
+    const string &sgPartidoCandidato,
+    const int &nrFederacaoPartidoCandidato,
+    const string &dtNascimento,
+    const int &cdSitTotTurno,
+    const int &cdGenero,
+    const bool &apenasVotosDeLegenda
+) {
+    this->cdCargo = cdCargo;
+    this->cdDetalheSituacaoCand = cdDetalheSituacaoCand;
+    this->nrCandidato = nrCandidato;
+    this->nmUrnaCandidato = nmUrnaCandidato;
+    this->nrPartidoCandidato = nrPartidoCandidato;
+    this->sgPartidoCandidato = sgPartidoCandidato;
+    this->nrFederacaoPartidoCandidato = nrFederacaoPartidoCandidato;
+    this->dtNascimento = dtNascimento;
+    this->cdSitTotTurno = cdSitTotTurno;
+    this->cdGenero = cdGenero;
+    this->apenasVotosDeLegenda = apenasVotosDeLegenda;
+}
+
 int candidato::getNrPartidoCandidato() const {
     return this->nrPartidoCandidato;
 }
@@ -8,7 +34,7 @@ bool candidato::getApenasVotosDeLegenda() const {
     return this->apenasVotosDeLegenda;
 }
 
-void candidato::setApenasVotosDeLegenda(bool& apenasVotosDeLegenda) {
+void candidato::setApenasVotosDeLegenda(const bool& apenasVotosDeLegenda) {
     this->apenasVotosDeLegenda = apenasVotosDeLegenda;
 }
 
@@ -20,7 +46,7 @@ partido candidato::getPartidoCandidato() const {
     return this->partioCandidato;
 }
 
-void candidato::setNrVotavel(int& nrVotavel) {
+void candidato::setNrVotavel(const int& nrVotavel) {
     this->nrVotavel = nrVotavel;
 }
 
@@ -36,11 +62,11 @@ int candidato::getPosRankingVotos() const {
     return this->posRankingVotos;
 }
 
-void candidato::setPosRankingVotos(int& posRankingVotos) {
+void candidato::setPosRankingVotos(const int& posRankingVotos) {
     this->posRankingVotos = posRankingVotos;
 }
 
-void candidato::setPartidoCandidato(partido& partioCandidato) {
+void candidato::setPartidoCandidato(const partido& partioCandidato) {
     this->partioCandidato = partioCandidato;
 }
 
@@ -64,7 +90,7 @@ int candidato::getQtVotos() const {
     return this->qtVotos;
 }
 
-void candidato::setQtVotos(int& qtVotos) {
+void candidato::setQtVotos(const int& qtVotos) {
     this->qtVotos = qtVotos;
 }
 
@@ -76,7 +102,7 @@ int candidato::getCdCargo() const {
     return this->cdCargo;
 }
 
-int candidato::calculaIdade(string& dtEleicao) {
+int candidato::calculaIdade(const string& dtEleicao) {
 
     // dd/mm/aaaa
 
@@ -100,4 +126,8 @@ int candidato::calculaIdade(string& dtEleicao) {
     }
 
     return idade;
+}
+
+void candidato::destroiCandidato() {
+    // libera todo o espaço de memória alocado para o candidato
 }

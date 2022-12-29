@@ -1,3 +1,8 @@
+//FIXME: ta dando algum probelma de dependência entre candidato e partido
+#include "candidato.h"
+#include "partido.h"
+#include "impressora.h"
+#include "leitor.h"
 #include <stdlib.h>
 #include <iostream>
 
@@ -11,7 +16,8 @@ int main(int argc, char* argv[]) {
         exit(1);
     }
 
-    cout << "Análise\n";
+    
+
 
     return 0;
 }

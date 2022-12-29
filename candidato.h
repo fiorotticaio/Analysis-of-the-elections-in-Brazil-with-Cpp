@@ -36,27 +36,40 @@ class candidato {
 
 
 public:
+    candidato(
+        const int& cdCargo, 
+        const int& cdDetalheSituacaoCand,
+        const int& nrCandidato,
+        const string& nmUrnaCandidato,
+        const int& nrPartidoCandidato,
+        const string& sgPartidoCandidato,
+        const int& nrFederacaoPartidoCandidato,
+        const string& dtNascimento,
+        const int& cdSitTotTurno,
+        const int& cdGenero,
+        const bool& apenasVotosDeLegenda
+    );
     int getNrPartidoCandidato() const;
     bool getApenasVotosDeLegenda() const;
-    void setApenasVotosDeLegenda(bool& apenasVotosDeLegenda);
+    void setApenasVotosDeLegenda(const bool& apenasVotosDeLegenda);
     int getCdGenero() const;
     partido getPartidoCandidato() const;
-    void setNrVotavel(int& nrVotavel);
+    void setNrVotavel(const int& nrVotavel);
     int getNrVotavel() const;
     int getNrCandidato() const;
     int getPosRankingVotos() const;
-    void setPosRankingVotos(int& posRankingVotos);
-    void setPartidoCandidato(partido& partioCandidato);
+    void setPosRankingVotos(const int& posRankingVotos);
+    void setPartidoCandidato(const partido& partioCandidato);
     int getNrFederacaoPartidoCandidato() const;
     string getDtNascimento() const; //TODO: trocar pra um tipo de date (não sei se tem)
     string getSgPartidoCandidato() const;
     int getCdSitTotTurno() const;
     int getQtVotos() const;
-    void setQtVotos(int& qtVotos);
+    void setQtVotos(const int& qtVotos);
     string getNmUrnaCandidato() const;
     int getCdCargo() const;
-
-    int calculaIdade(string& dtEleicao); //TODO: trocar pra um tipo de date (não sei se tem)
+    int calculaIdade(const string& dtEleicao); //TODO: trocar pra um tipo de date (não sei se tem)
+    void destroiCandidato();
 };
 
 #endif // !CANDIDATO_H

@@ -2,6 +2,7 @@
 #define PARTIDO_H
 
 #include "candidato.h"
+#include <iostream>
 #include <string>
 #include <map>
 #include <list>
@@ -23,25 +24,26 @@ class partido {
     int maiorQtdDeVotosDeUmCandidato = 0;
 
 public:
+    partido(const int& numero, const string& sigla, const string& nome);
     int getMaiorQtdDeVotosDeUmCandidato() const;
-    void setMaiorQtdDeVotosDeUmCandidato(int& maiorQtdDeVotosDeUmCandidato);
-    void setQtdVotosNominais(int& qtdVotosNominais);
+    void setMaiorQtdDeVotosDeUmCandidato(const int& maiorQtdDeVotosDeUmCandidato);
+    void setQtdVotosNominais(const int& qtdVotosNominais);
     list<candidato> getCandidatos() const;
     map<int, candidato> getCandidatosMap() const;
     int getQtdVotosNominais() const;
     int getQtdVotosLegenda() const;
-    void setQtdVotosLegenda(int& qtdVotosLegenda);
+    void setQtdVotosLegenda(const int& qtdVotosLegenda);
     int getQtdCandidatosEleitos() const;
     int getNumero() const;
     string getNome() const;
     string getSigla() const;
     int getQtdVotosTotal() const;
-    void adicionaCandidato(candidato& candidato);
-
-    void calculaQuantidadeDeVotos(int& flag);
-    candidato getCandidatoMaisVotado(list<candidato>& candidatos, int& flag);
-    candidato getCandidatoMenosVotado(list<candidato>& candidatos, int& flag);
+    void adicionaCandidato(const candidato& candidato);
+    void calculaQuantidadeDeVotos(const int& flag);
+    candidato getCandidatoMaisVotado(const list<candidato>& candidatos, const int& flag);
+    candidato getCandidatoMenosVotado(const list<candidato>& candidatos, const int& flag);
     void imprimeCandidatos() const;
+    void destroiPartido();
 };
 
 #endif // !PARTIDO_H
