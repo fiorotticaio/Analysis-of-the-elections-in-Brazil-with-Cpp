@@ -1,4 +1,6 @@
 # Analysis-of-the-elections-in-Brazil-with-Cpp
 
 ## BUGS
-> Se encontrar algum bug, por favor reporte aqui.
+### Se encontrar algum bug, por favor reporte aqui.
+> Problemas de dependência (includes) entre candidato e partido
+> Saber onde trocar para ponteiros
