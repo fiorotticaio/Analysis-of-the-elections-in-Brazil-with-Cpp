@@ -16,6 +16,7 @@ class impressora {
 
 
 public:
+    // Construtor implícito
     void setNumeroDeVagas(const int& numeroDeVagas);
     list<candidato> ordenaPartidosPorMaiorVotoCandidato(const list<partido>& partidos, const int& flag);
     list<partido> ordenaPartidos(const map<int, partido>& partidos, const int& flag);
