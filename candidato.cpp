@@ -1,4 +1,5 @@
 #include "candidato.h"
+#include "partido.h"
 
 candidato::candidato(
     const int &cdCargo,
@@ -43,7 +44,7 @@ int candidato::getCdGenero() const {
 }
 
 partido candidato::getPartidoCandidato() const {
-    return this->partioCandidato;
+    return *(this->partioCandidato);
 }
 
 void candidato::setNrVotavel(const int& nrVotavel) {
@@ -66,7 +67,7 @@ void candidato::setPosRankingVotos(const int& posRankingVotos) {
     this->posRankingVotos = posRankingVotos;
 }
 
-void candidato::setPartidoCandidato(const partido& partioCandidato) {
+void candidato::setPartidoCandidato(partido* partioCandidato) {
     this->partioCandidato = partioCandidato;
 }
 

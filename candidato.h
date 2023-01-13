@@ -1,14 +1,15 @@
 #ifndef CANDIDATO_H
 #define CANDIDATO_H
 
-#include "partido.h"
 #include <string>
 // #include <chrono> 
 
 using namespace std;
 
+class partido;
+
 class candidato {
-    partido partioCandidato;
+    partido* partioCandidato;
     int posRankingVotos;
 
     /* arquivo dos candidatos */
@@ -23,7 +24,6 @@ class candidato {
     int nrCandidato = 0;                    // Número do candidato
 
     string dtNascimento;                    // Data de nascimento do candidato 
-    // chrono::year_month_day dtNascimento;    //TODO: trocar pra um tipo de date (não sei se tem)
 
     int cdCargo = 0;                        // Código do cargo (7 - dep estadual, 6 - dep federal)
     int cdGenero;                           // Genero do candidato (2 - masculino, 4 - feminino)
@@ -59,16 +59,16 @@ public:
     int getNrCandidato() const;
     int getPosRankingVotos() const;
     void setPosRankingVotos(const int& posRankingVotos);
-    void setPartidoCandidato(const partido& partioCandidato);
+    void setPartidoCandidato(partido* partioCandidato);
     int getNrFederacaoPartidoCandidato() const;
-    string getDtNascimento() const; //TODO: trocar pra um tipo de date (não sei se tem)
+    string getDtNascimento() const; 
     string getSgPartidoCandidato() const;
     int getCdSitTotTurno() const;
     int getQtVotos() const;
     void setQtVotos(const int& qtVotos);
     string getNmUrnaCandidato() const;
     int getCdCargo() const;
-    int calculaIdade(const string& dtEleicao); //TODO: trocar pra um tipo de date (não sei se tem)
+    int calculaIdade(const string& dtEleicao); 
     void destroiCandidato();
 };
 

@@ -14,7 +14,7 @@ class partido {
     string sigla;
     int numero = 0;
     
-    map<int, candidato> candidatos;
+    // map<int, candidato> candidatos; (questão dos ponteiros)
     
     int qtdVotosTotal = 0;
     int qtdVotosLegenda = 0;

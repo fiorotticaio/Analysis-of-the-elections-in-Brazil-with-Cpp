@@ -21,11 +21,11 @@ void partido::setQtdVotosNominais(const int& qtdVotosNominais) {
 
 list<candidato> partido::getCandidatos() const {
     //FIXME: não sei se funciona
-    return list<candidato>(this->candidatos.begin(), this->candidatos.end());
+    // return list<candidato>(this->candidatos.begin(), this->candidatos.end());
 }
 
 map<int, candidato> partido::getCandidatosMap() const {
-    return this->candidatos;
+    // return this->candidatos;
 }
 
 int partido::getQtdVotosNominais() const {
@@ -78,10 +78,10 @@ candidato partido::getCandidatoMenosVotado(const list<candidato> &candidatos, co
 
 /* Debug */
 void partido::imprimeCandidatos() const {
-    cout << "Candidatos do partido " << this->getSigla() << " (" << this->getNome() << "):" << endl;
-    for (auto& candidato : this->candidatos) {
-        cout << "Candidato " << candidato.second.getNrVotavel() << " - " << candidato.second.getNmUrnaCandidato() << " - " << candidato.second.getQtVotos() << " votos" << endl;
-    }
+    // cout << "Candidatos do partido " << this->getSigla() << " (" << this->getNome() << "):" << endl;
+    // for (auto& candidato : this->candidatos) {
+    //     cout << "Candidato " << candidato.second.getNrVotavel() << " - " << candidato.second.getNmUrnaCandidato() << " - " << candidato.second.getQtVotos() << " votos" << endl;
+    // }
 }
 
 void partido::destroiPartido() {
