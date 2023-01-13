@@ -8,6 +8,7 @@
 #include <iostream>
 #include <iostream>
 #include <iomanip>
+#include <vector>
 
 using namespace std;
 
@@ -19,18 +20,18 @@ public:
     void leArquivoCandidatos
     (
         const string& caminhoArquivo,
-        const map<int, candidato>& candidatos,
-        const map<int, partido>& partidos,
+        const map<int, candidato*>* candidatos,
+        const map<int, partido*>* partidos,
         const int& flag
     );
     void leArquivoVotacao
     (
         const string& caminhoArquivo,
-        const map<int, candidato>& candidatos,
-        const map<int, partido>& partidos,
+        const map<int, candidato*>* candidatos,
+        const map<int, partido*>* partidos,
         const int& flag
     );
-    void adicionaCandidatosPartidos(const map<int, candidato>& candidatos, const map<int, partido>& partidos);
+    void adicionaCandidatosPartidos(const map<int, candidato*>* candidatos, const map<int, partido*>* partidos);
     void destroiLeitor();
 };
 

@@ -1,8 +1,7 @@
-//FIXME: ta dando algum probelma de dependência entre candidato e partido
-// #include "candidato.h"
-// #include "partido.h"
-// #include "impressora.h"
-// #include "leitor.h"
+#include "candidato.h"
+#include "partido.h"
+#include "impressora.h"
+#include "leitor.h"
 #include <stdlib.h>
 #include <string.h>
 #include <iostream>
@@ -34,19 +33,22 @@ int main(int argc, char* argv[]) {
         exit(1);
     }
 
-    /*=========== Criando variáveis importantes (maps) ===========*/
-    // map<int, candidato*>* candidatos; 
-    // map<int, partido*>* partidos;
+    /*=========== Criando variáveis importantes (ponteiro para maps) ===========*/
+    map<int, candidato*>* candidatos; // <NR_CANDIDATO, CANDIDATO>
+    map<int, partido*>* partidos; // <NR_PARTIDO, PARTIDO>
     
-
-
     
     /*======= Leitura dos dados ===========*/
+    leitor* leitor;
+    leitor->leArquivoCandidatos(caminhoArquivoCandidatos, candidatos, partidos, flag);
 
 
 
 
     /*======== Processando os dados =========*/
+    // for ()
+
+    impressora* impressora;
 
 
 
