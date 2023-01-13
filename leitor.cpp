@@ -23,3 +23,7 @@ void leitor::leArquivoVotacao
 void leitor::adicionaCandidatosPartidos(const map<int, candidato>& candidatos, const map<int, partido>& partidos) {
 
 }
+
+void leitor::destroiLeitor() {
+    // Libera todo o espaço reservado para o leitor
+}

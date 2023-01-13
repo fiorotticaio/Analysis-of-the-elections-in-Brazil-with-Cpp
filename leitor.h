@@ -30,7 +30,8 @@ public:
         const map<int, partido>& partidos,
         const int& flag
     );
-    void adicionaCandidatosPartidos(const map<int, candidato>& candidatos, const map<int, partido>& partidos);  
+    void adicionaCandidatosPartidos(const map<int, candidato>& candidatos, const map<int, partido>& partidos);
+    void destroiLeitor();
 };
 
 #endif // !LEITOR_H
