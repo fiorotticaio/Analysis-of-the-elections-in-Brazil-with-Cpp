@@ -7,6 +7,10 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <iomanip>
+#include <map>
+#include <vector>
+
 
 using namespace std;
 
@@ -34,13 +38,13 @@ int main(int argc, char* argv[]) {
     }
 
     /*=========== Criando variáveis importantes (ponteiro para maps) ===========*/
-    map<int, candidato*>* candidatos; // <NR_CANDIDATO, CANDIDATO>
-    map<int, partido*>* partidos; // <NR_PARTIDO, PARTIDO>
+    map<int, candidato*>* candidatos = new map<int, candidato*>; // <NR_CANDIDATO, CANDIDATO>
+    map<int, partido*>* partidos = new map<int, partido*>; // <NR_PARTIDO, PARTIDO>
     
     
     /*======= Leitura dos dados ===========*/
-    leitor* leitor;
-    leitor->leArquivoCandidatos(caminhoArquivoCandidatos, candidatos, partidos, flag);
+    leitor* meuLeitor = new leitor();
+    meuLeitor->leArquivoCandidatos(caminhoArquivoCandidatos, candidatos, partidos, flag);
 
 
 
@@ -48,7 +52,7 @@ int main(int argc, char* argv[]) {
     /*======== Processando os dados =========*/
     // for ()
 
-    impressora* impressora;
+    impressora* minhaImpressora = new impressora();
 
 
 
@@ -58,6 +62,15 @@ int main(int argc, char* argv[]) {
 
 
 
+
+    /*======== Liberando toda a memória alocada ========*/
+    // tudo que criou com o "new" precisa ser deletado
+    //TODO: como lidar com liberação de memória de candidatos e partidos?
+    //TODO: já que um está dentro do outro, como liberar um sem liberar o outro?
+    delete candidatos;
+    delete partidos;
+    delete meuLeitor;
+    delete minhaImpressora;
 
     return 0;
 }
