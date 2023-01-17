@@ -1,7 +1,7 @@
 #include "partido.h"
 
 partido::partido(const int &numero, const string &sigla, const string &nome) {
-    // this->candidatos = map<int, candidato>(); // não sei se ta certo (tem os bagui de ponteiro ainda pra ver)
+    this->candidatos = new map<int, candidato*>(); 
     this->numero = numero;
     this->sigla = sigla;
     this->nome = nome;
@@ -19,13 +19,12 @@ void partido::setQtdVotosNominais(const int& qtdVotosNominais) {
     this->qtdVotosNominais = qtdVotosNominais;
 }
 
-list<candidato> partido::getCandidatos() const {
-    //FIXME: não sei se funciona
-    // return list<candidato>(this->candidatos.begin(), this->candidatos.end());
-}
+// list<candidato> partido::getCandidatos() const {
+//     return list<candidato>(this->candidatos->begin(), this->candidatos->end());
+// }
 
-map<int, candidato> partido::getCandidatosMap() const {
-    // return this->candidatos;
+map<int, candidato*>* partido::getCandidatosMap() const {
+    return this->candidatos;
 }
 
 int partido::getQtdVotosNominais() const {
@@ -68,13 +67,13 @@ void partido::calculaQuantidadeDeVotos(const int& flag) {
     // calcula a quantidade de votos do partido
 }
 
-candidato partido::getCandidatoMaisVotado(const list<candidato>& candidatos, const int& flag) {
-    // retorna o candidato mais votado do partido
-}
+// candidato partido::getCandidatoMaisVotado(const list<candidato>& candidatos, const int& flag) {
+//     // retorna o candidato mais votado do partido
+// }
 
-candidato partido::getCandidatoMenosVotado(const list<candidato> &candidatos, const int &flag) {
-    // retorna o candidato menos votado do partido
-}
+// candidato partido::getCandidatoMenosVotado(const list<candidato> &candidatos, const int &flag) {
+//     // retorna o candidato menos votado do partido
+// }
 
 /* Debug */
 void partido::imprimeCandidatos() const {

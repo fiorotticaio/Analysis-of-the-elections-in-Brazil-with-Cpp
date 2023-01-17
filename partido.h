@@ -14,7 +14,7 @@ class partido {
     string sigla;
     int numero = 0;
     
-    // map<int, candidato> candidatos; (questão dos ponteiros)
+    map<int, candidato*>* candidatos;
     
     int qtdVotosTotal = 0;
     int qtdVotosLegenda = 0;
@@ -29,7 +29,7 @@ public:
     void setMaiorQtdDeVotosDeUmCandidato(const int& maiorQtdDeVotosDeUmCandidato);
     void setQtdVotosNominais(const int& qtdVotosNominais);
     list<candidato> getCandidatos() const;
-    map<int, candidato> getCandidatosMap() const;
+    map<int, candidato*>* getCandidatosMap() const;
     int getQtdVotosNominais() const;
     int getQtdVotosLegenda() const;
     void setQtdVotosLegenda(const int& qtdVotosLegenda);
