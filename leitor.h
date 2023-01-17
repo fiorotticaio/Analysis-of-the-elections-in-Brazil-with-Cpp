@@ -6,7 +6,6 @@
 #include <map>
 #include <fstream>
 #include <iostream>
-#include <iostream>
 #include <iomanip>
 #include <vector>
 
@@ -14,24 +13,23 @@ using namespace std;
 
 class leitor {
 
-
 public:
-    // Construtor implícito
+    leitor(){} // Construtor
     void leArquivoCandidatos
     (
         const string& caminhoArquivo,
-        const map<int, candidato*>* candidatos,
-        const map<int, partido*>* partidos,
+        map<int, candidato*>* candidatos,
+        map<int, partido*>* partidos,
         const int& flag
     );
     void leArquivoVotacao
     (
         const string& caminhoArquivo,
-        const map<int, candidato*>* candidatos,
-        const map<int, partido*>* partidos,
+        map<int, candidato*>* candidatos,
+        map<int, partido*>* partidos,
         const int& flag
     );
-    void adicionaCandidatosPartidos(const map<int, candidato*>* candidatos, const map<int, partido*>* partidos);
+    void adicionaCandidatosPartidos(map<int, candidato*>* candidatos, map<int, partido*>* partidos);
     void destroiLeitor();
 };
 
