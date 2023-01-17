@@ -4,17 +4,17 @@ void impressora::setNumeroDeVagas(const int &numeroDeVagas) {
     this->numeroDeVagas = numeroDeVagas;
 }
 
-list<candidato> impressora::ordenaPartidosPorMaiorVotoCandidato(const list<partido> &partidos, const int &flag) {
-    // ordena partidos por maior votos de candidato
-}
+// list<candidato> impressora::ordenaPartidosPorMaiorVotoCandidato(const list<partido> &partidos, const int &flag) {
+//     // ordena partidos por maior votos de candidato
+// }
 
-list<partido> impressora::ordenaPartidos(const map<int, partido> &partidos, const int &flag) {
-    // ordena partidos por maior votos 
-}
+// list<partido> impressora::ordenaPartidos(const map<int, partido> &partidos, const int &flag) {
+//     // ordena partidos por maior votos 
+// }
 
-list<candidato> impressora::ordenaCandidatos(const map<int, candidato> &candidatos, const int &flag) {
-    // ordena candidatos por maior votos 
-}
+// list<candidato> impressora::ordenaCandidatos(const map<int, candidato> &candidatos, const int &flag) {
+//     // ordena candidatos por maior votos 
+// }
 
 void impressora::imprimeCandidato(const candidato &c, const int &i) {
     // O argumento "i" faz referencia a qual indice será colocado antes do nome do candidato.
