@@ -47,4 +47,13 @@ runestadual: $(EXECUTAVEL)
 
 # comando para limpeza
 clean:
-	@rm *.o $(EXECUTAVEL) 
+	@rm *.o $(EXECUTAVEL)
+
+# testes (APAGAR DEPOIS)
+test:
+	g++ -c -Wall -g -std=c++17 leitor.cpp
+	# g++ -c -Wall -g -std=c++17 impressora.cpp
+	g++ -c -Wall -g -std=c++17 candidato.cpp
+	g++ -c -Wall -g -std=c++17 partido.cpp
+	g++ -o deputados leitor.o candidato.o partido.o main.cpp
+	./deputados --estadual consulta_cand_2022_ES.csv votacao_secao_2022_ES.csv 02/10/2022
