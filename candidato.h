@@ -34,7 +34,6 @@ class candidato {
     // 95, 96, 97, 98 representam casos de votos em branco, nulos ou anulados, e devem ser ignorados
     int qtVotos = 0;
 
-
 public:
     candidato(
         const int& cdCargo, 
