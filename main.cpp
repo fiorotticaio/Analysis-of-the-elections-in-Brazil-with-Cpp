@@ -50,11 +50,14 @@ int main(int argc, char* argv[]) {
 
 
     /*======== Processando os dados =========*/
-    // for (const auto& [chave, part] : *partidos) {
-    //     part->calculaQuantidadeDeVotos(flag);
-    // }
+    for (const auto& [chave, part] : *partidos) {
+        part->calculaQuantidadeDeVotos(flag);
+    }
 
     impressora* minhaImpressora = new impressora();
+    list<candidato*>* candidatosOrdenados = minhaImpressora->ordenaCandidatos(candidatos, flag, dataDaEleicao);
+    minhaImpressora->imprimeCandidatos(candidatosOrdenados);
+    // list<partido> partidosOrdenados = impressora->ordenaPartidos(partidos, flag);
 
 
 
@@ -86,6 +89,7 @@ int main(int argc, char* argv[]) {
 
     delete meuLeitor;
     delete minhaImpressora;
+    delete candidatosOrdenados;
 
     return 0;
 }
