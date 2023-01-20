@@ -55,9 +55,8 @@ test:
 	g++ -c -Wall -g -std=c++17 impressora.cpp
 	g++ -c -Wall -g -std=c++17 candidato.cpp
 	g++ -c -Wall -g -std=c++17 partido.cpp
-	g++ -o deputados leitor.o candidato.o partido.o main.cpp
+	g++ -o deputados leitor.o impressora.o candidato.o partido.o main.cpp
 	./deputados --estadual consulta_cand_2022_ES.csv votacao_secao_2022_ES.csv 02/10/2022
 
 val:
-	valgrind ./deputados --estadual consulta_cand_2022_ES.csv votacao_secao_2022_ES.csv 02/10/2022
-# --leak-check=full --show-leak-kinds=all
+	valgrind --leak-check=full --show-leak-kinds=all ./deputados --estadual consulta_cand_2022_ES.csv votacao_secao_2022_ES.csv 02/10/2022
