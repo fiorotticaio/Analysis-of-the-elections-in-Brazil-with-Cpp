@@ -128,7 +128,3 @@ int candidato::calculaIdade(const string& dtEleicao) {
 
     return idade;
 }
-
-void candidato::destroiCandidato() {
-    // libera todo o espaço de memória alocado para o candidato
-}

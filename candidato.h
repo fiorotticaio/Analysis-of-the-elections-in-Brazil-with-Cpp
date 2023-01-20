@@ -68,7 +68,6 @@ public:
     string getNmUrnaCandidato() const;
     int getCdCargo() const;
     int calculaIdade(const string& dtEleicao); 
-    void destroiCandidato();
 };
 
 #endif // !CANDIDATO_H

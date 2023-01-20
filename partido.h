@@ -25,6 +25,7 @@ class partido {
 
 public:
     partido(const int& numero, const string& sigla, const string& nome);
+    void destroiPartido();
     int getMaiorQtdDeVotosDeUmCandidato() const;
     void setMaiorQtdDeVotosDeUmCandidato(const int& maiorQtdDeVotosDeUmCandidato);
     void setQtdVotosNominais(const int& qtdVotosNominais);
@@ -38,12 +39,11 @@ public:
     string getNome() const;
     string getSigla() const;
     int getQtdVotosTotal() const;
-    void adicionaCandidato(const candidato& candidato);
+    void adicionaCandidato(candidato* candidato);
     void calculaQuantidadeDeVotos(const int& flag);
     candidato getCandidatoMaisVotado(const list<candidato>& candidatos, const int& flag);
     candidato getCandidatoMenosVotado(const list<candidato>& candidatos, const int& flag);
     void imprimeCandidatos() const;
-    void destroiPartido();
 };
 
 #endif // !PARTIDO_H

@@ -7,6 +7,11 @@ partido::partido(const int &numero, const string &sigla, const string &nome) {
     this->nome = nome;
 }
 
+void partido::destroiPartido() {
+    delete this->candidatos;
+    delete this;
+}
+
 int partido::getMaiorQtdDeVotosDeUmCandidato() const {
     return this->maiorQtdDeVotosDeUmCandidato;
 }
@@ -59,8 +64,9 @@ int partido::getQtdVotosTotal() const {
     return this->qtdVotosTotal;
 }
 
-void partido::adicionaCandidato(const candidato& candidato) {
-    // this->candidatos.insert(pair<int, candidato>(candidato.getNumero(), candidato));
+void partido::adicionaCandidato(candidato* cand) {
+    pair<int, candidato*> novoElemento = make_pair(cand->getNrCandidato(), cand);
+    this->candidatos->insert(novoElemento);
 }
 
 void partido::calculaQuantidadeDeVotos(const int& flag) {
@@ -81,8 +87,4 @@ void partido::imprimeCandidatos() const {
     // for (auto& candidato : this->candidatos) {
     //     cout << "Candidato " << candidato.second.getNrVotavel() << " - " << candidato.second.getNmUrnaCandidato() << " - " << candidato.second.getQtVotos() << " votos" << endl;
     // }
-}
-
-void partido::destroiPartido() {
-    // libera todo o espaço de memória alocado para o partido
 }
