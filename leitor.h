@@ -2,6 +2,7 @@
 
 #include "candidato.h"
 #include "partido.h"
+#include <string.h>
 #include <string>
 #include <map>
 #include <fstream>
@@ -30,7 +31,6 @@ public:
         const int& flag
     );
     void adicionaCandidatosPartidos(map<int, candidato*>* candidatos, map<int, partido*>* partidos);
-    void destroiLeitor();
 };
 
 #endif // !LEITOR_H
