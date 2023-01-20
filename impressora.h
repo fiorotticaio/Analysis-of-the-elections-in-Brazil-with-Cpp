@@ -19,9 +19,9 @@ public:
     void setNumeroDeVagas(const int& numeroDeVagas);
     list<candidato> ordenaPartidosPorMaiorVotoCandidato(const list<partido>& partidos, const int& flag);
     list<partido> ordenaPartidos(const map<int, partido>& partidos, const int& flag);
-    // list<candidato> ordenaCandidatos(const map<int, candidato>& candidatos, const int& flag);
-    void imprimeCandidato(const candidato& c, const int& i);
-    void imprimeCandidatos(const list<candidato>& candidatos);
+    list<candidato*>* ordenaCandidatos(map<int, candidato*>* candidatos, const int& flag, const string& dtEleicao);
+    void imprimeCandidato(candidato* c, const int& i);
+    void imprimeCandidatos(list<candidato*>* candidatos);
     void imprimePartidos(const list<partido>& partidos);
     void imprimeRelatorio1(const list<candidato>& candidatos, const int& flag);
     void imprimeRelatorio2(const list<candidato>& candidatos, const int& flag);

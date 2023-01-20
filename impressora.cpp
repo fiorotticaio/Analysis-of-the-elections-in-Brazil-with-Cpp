@@ -12,30 +12,60 @@ void impressora::setNumeroDeVagas(const int &numeroDeVagas) {
 //     // ordena partidos por maior votos 
 // }
 
-// list<candidato> impressora::ordenaCandidatos(const map<int, candidato> &candidatos, const int &flag) {
-//     // ordena candidatos por maior votos 
-// }
+list<candidato*>* impressora::ordenaCandidatos
+(
+    map<int, candidato*>* candidatos,
+    const int &flag,
+    const string &dtEleicao
+) {    
+    /* criando uma lista de candidatos com base no mapa */
+    list<candidato*>* candidatosOrdenados = new list<candidato*>;
+    for (const auto& [chave, cand] : *candidatos) {
+        candidatosOrdenados->push_back(cand);
+    }
 
-void impressora::imprimeCandidato(const candidato &c, const int &i) {
+    candidatosOrdenados->sort([dtEleicao](candidato* a, candidato* b) {
+        if (a->getQtVotos() == b->getQtVotos()) {
+            /* caso tenham o mesmo numero de votos, o mais velho ganha */
+            int idadeA = a->calculaIdade(dtEleicao);
+            int idadeB = b->calculaIdade(dtEleicao);
+            return idadeA > idadeB;
+        } else {
+            return a->getQtVotos() > b->getQtVotos();
+        }
+    });
+
+    /* Inserindo rankings na lista de candidatos */
+    int i = 1;
+    for (auto cand : *candidatosOrdenados) {
+        if (cand->getCdCargo() != flag) continue;
+        cand->setPosRankingVotos(i);
+        i++;
+    }
+
+    return candidatosOrdenados;
+}
+
+void impressora::imprimeCandidato(candidato* c, const int &i) {
     // O argumento "i" faz referencia a qual indice será colocado antes do nome do candidato.
     //   -> Para i=-1 será colocado a posição do candidato no ranking de votos
     //   -> Para qualquer outro valor será usado o i como indice
     string ehFederacao = "";
-    if (c.getNrFederacaoPartidoCandidato() != -1) ehFederacao = "*";
+    if (c->getNrFederacaoPartidoCandidato() != -1) ehFederacao = "*";
 
-    cout.imbue(locale("pt_BR.UTF-8"));
+    cout.imbue(locale("pt_BR.UTF-8")); //TODO: problema com alocação de memória aqui
 
-    i == -1? cout << c.getPosRankingVotos() << " - " : cout << i << " - ";
+    i == -1? cout << c->getPosRankingVotos() << " - " : cout << i << " - ";
 
-    cout << ehFederacao << c.getNmUrnaCandidato() << " (" << c.getSgPartidoCandidato() << ", "
-        << c.getQtVotos() << " votos)" << endl;
+    cout << ehFederacao << c->getNmUrnaCandidato() << " (" << c->getSgPartidoCandidato() << ", "
+        << c->getQtVotos() << " votos)" << endl;
 }
 
 /* Debug */
-void impressora::imprimeCandidatos(const list<candidato> &candidatos) {
+void impressora::imprimeCandidatos(list<candidato*>* candidatos) {
     int i = 1;
-    for (auto cand : candidatos) {
-        imprimeCandidato(cand, i);
+    for (auto cand : *candidatos) {
+        this->imprimeCandidato(cand, i);
         i++;
     }
 }
@@ -70,7 +100,7 @@ void impressora::imprimeRelatorio2(const list<candidato> &candidatos, const int 
 
     for (auto c : candidatos) {
         if (c.getCdCargo() != flag || i < this->numeroDeVagas || (c.getCdSitTotTurno() != 2 && c.getCdSitTotTurno() != 3)) {
-            this->imprimeCandidato(c, i);
+            // this->imprimeCandidato(c, i);
             i++;
         }
     }
@@ -83,7 +113,7 @@ void impressora::imprimeRelatorio3(const list<candidato> &candidatos, const int 
 
     for (auto c : candidatos) {
         if (c.getCdCargo() != flag || i > this->numeroDeVagas) continue;
-        this->imprimeCandidato(c, -1);
+        // this->imprimeCandidato(c, -1);
         i++;
     }
 }
@@ -95,7 +125,7 @@ void impressora::imprimeRelatorio4(const list<candidato> &candidatos, const int 
     for (candidato c : candidatos) {
         if (c.getCdCargo() != flag || c.getCdSitTotTurno() == 2 || c.getCdSitTotTurno() == 3) continue;
         if (c.getPosRankingVotos() > this->numeroDeVagas) break;
-        this->imprimeCandidato(c, -1);
+        // this->imprimeCandidato(c, -1);
     }
 }
 
@@ -109,9 +139,9 @@ void impressora::imprimeRelatorio5(const list<candidato> &candidatos, const int 
             c.getCdCargo() == flag &&
             (c.getCdSitTotTurno() == 2 || c.getCdSitTotTurno() == 3) &&
             c.getPosRankingVotos() > this->numeroDeVagas
-        ) this->imprimeCandidato(c, -1);
-        
-        else continue;
+        ) {
+            // this->imprimeCandidato(c, -1);
+        } else continue;        
     }      
 }
 
