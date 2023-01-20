@@ -45,6 +45,7 @@ int main(int argc, char* argv[]) {
     /*======= Leitura dos dados ===========*/
     leitor* meuLeitor = new leitor();
     meuLeitor->leArquivoCandidatos(caminhoArquivoCandidatos, candidatos, partidos, flag);
+    meuLeitor->adicionaCandidatosPartidos(candidatos, partidos);
 
 
 
@@ -65,10 +66,23 @@ int main(int argc, char* argv[]) {
 
     /*======== Liberando toda a memória alocada ========*/
     // tudo que criou com o "new" precisa ser deletado
-    //TODO: como lidar com liberação de memória de candidatos e partidos?
-    //TODO: já que um está dentro do outro, como liberar um sem liberar o outro?
-    delete candidatos;
+
+    /* deletando os partidos */
+    map<int, partido*>::iterator it;
+    for (it = partidos->begin(); it != partidos->end(); it++) {
+        partido* part = it->second;
+        part->destroiPartido();
+    }
     delete partidos;
+
+    /* deletando os candidatos */
+    map<int, candidato*>::iterator it2;
+    for (it2 = candidatos->begin(); it2 != candidatos->end(); it2++) {
+        candidato* cand = it2->second;
+        delete cand;
+    }
+    delete candidatos;
+
     delete meuLeitor;
     delete minhaImpressora;
 
