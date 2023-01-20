@@ -70,7 +70,27 @@ void partido::adicionaCandidato(candidato* cand) {
 }
 
 void partido::calculaQuantidadeDeVotos(const int& flag) {
-    // calcula a quantidade de votos do partido
+    int maiorQtdDeVotosDeUmCandidato = -1;
+
+    for (map<int, candidato*>::iterator it = this->candidatos->begin(); it != this->candidatos->end(); it++) {
+        candidato* cand = it->second;
+        if ((cand->getCdSitTotTurno() == 2 ||
+            cand->getCdSitTotTurno() == 3) &&
+            cand->getCdCargo() == flag)
+        {
+            this->qtdCandidatosEleitos++;
+        }
+
+        /* já preparando pra ordenar pro relatório 8 */
+        if (cand->getCdCargo() == flag) {
+            if (cand->getQtVotos() > maiorQtdDeVotosDeUmCandidato) {
+                maiorQtdDeVotosDeUmCandidato = cand->getQtVotos();
+            }
+        }
+    }
+
+    this->setMaiorQtdDeVotosDeUmCandidato(maiorQtdDeVotosDeUmCandidato);
+    this->qtdVotosTotal = this->qtdVotosLegenda + this->qtdVotosNominais;
 }
 
 // candidato partido::getCandidatoMaisVotado(const list<candidato>& candidatos, const int& flag) {
