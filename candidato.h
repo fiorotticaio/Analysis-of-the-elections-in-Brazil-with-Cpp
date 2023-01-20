@@ -52,7 +52,7 @@ public:
     bool getApenasVotosDeLegenda() const;
     void setApenasVotosDeLegenda(const bool& apenasVotosDeLegenda);
     int getCdGenero() const;
-    partido getPartidoCandidato() const;
+    partido* getPartidoCandidato() const;
     void setNrVotavel(const int& nrVotavel);
     int getNrVotavel() const;
     int getNrCandidato() const;

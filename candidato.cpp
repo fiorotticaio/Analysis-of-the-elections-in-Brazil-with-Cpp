@@ -43,9 +43,9 @@ int candidato::getCdGenero() const {
     return this->cdGenero;
 }
 
-// partido candidato::getPartidoCandidato() const {
-//     return *(this->partioCandidato);
-// }
+partido* candidato::getPartidoCandidato() const {
+    return this->partioCandidato;
+}
 
 void candidato::setNrVotavel(const int& nrVotavel) {
     this->nrVotavel = nrVotavel;
