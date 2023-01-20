@@ -134,33 +134,33 @@ void impressora::imprimeRelatorio6(const list<partido> &partidos, const int &fla
     }
 }
 
-void impressora::imprimeRelatorio8(const list<partido> &partidos, const int &flag) {
-    cout << "Primeiro e último colocados de cada partido:\n";
+// void impressora::imprimeRelatorio8(const list<partido> &partidos, const int &flag) {
+//     cout << "Primeiro e último colocados de cada partido:\n";
 
-    int i = 1;
+//     int i = 1;
 
-    cout.imbue(locale("pt_BR.UTF-8"));
+//     cout.imbue(locale("pt_BR.UTF-8"));
 
-    for (auto p : partidos) {
+//     for (auto p : partidos) {
 
-        if (p.getQtdVotosNominais() == 0) continue;
+//         if (p.getQtdVotosNominais() == 0) continue;
 
-        // FIXME: o tipo de alocação aqui (e em outros lugares) vai mudar
-        list<candidato> candidatosOrdenados = this->ordenaCandidatos(p.getCandidatosMap(), flag);
-        candidato candidatoMaisVotado = p.getCandidatoMaisVotado(candidatosOrdenados, flag);
-        candidato candidatoMenosVotado = p.getCandidatoMenosVotado(candidatosOrdenados, flag);
+//         // FIXME: o tipo de alocação aqui (e em outros lugares) vai mudar
+//         list<candidato> candidatosOrdenados = this->ordenaCandidatos(p.getCandidatosMap(), flag);
+//         candidato candidatoMaisVotado = p.getCandidatoMaisVotado(candidatosOrdenados, flag);
+//         candidato candidatoMenosVotado = p.getCandidatoMenosVotado(candidatosOrdenados, flag);
 
-        cout << i << " - " << p.getSigla() << " - " << p.getNumero() << ", " << candidatoMaisVotado.getNmUrnaCandidato()
-            << " (" << candidatoMaisVotado.getNrCandidato() << ", " << candidatoMaisVotado.getQtVotos();
-        candidatoMaisVotado.getQtVotos() > 1 ? cout << " votos)" : cout << " voto)";
+//         cout << i << " - " << p.getSigla() << " - " << p.getNumero() << ", " << candidatoMaisVotado.getNmUrnaCandidato()
+//             << " (" << candidatoMaisVotado.getNrCandidato() << ", " << candidatoMaisVotado.getQtVotos();
+//         candidatoMaisVotado.getQtVotos() > 1 ? cout << " votos)" : cout << " voto)";
 
-        cout << " / ";
+//         cout << " / ";
 
-        cout << i << " - " << p.getSigla() << " - " << p.getNumero() << ", " << candidatoMenosVotado.getNmUrnaCandidato()
-            << " (" << candidatoMenosVotado.getNrCandidato() << ", " << candidatoMenosVotado.getQtVotos();
-        candidatoMenosVotado.getQtVotos() > 1 ? cout << " votos)\n" : cout << " voto)\n";
-    }
-}
+//         cout << i << " - " << p.getSigla() << " - " << p.getNumero() << ", " << candidatoMenosVotado.getNmUrnaCandidato()
+//             << " (" << candidatoMenosVotado.getNrCandidato() << ", " << candidatoMenosVotado.getQtVotos();
+//         candidatoMenosVotado.getQtVotos() > 1 ? cout << " votos)\n" : cout << " voto)\n";
+//     }
+// }
 
 void impressora::imprimeRelatorio9(const list<candidato> &candidatos, const int &flag, const string &dtEleicao) {
     cout << "Eleitos, por faixa etária (na data da eleição):\n";
