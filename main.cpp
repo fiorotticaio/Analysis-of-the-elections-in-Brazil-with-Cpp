@@ -46,12 +46,13 @@ int main(int argc, char* argv[]) {
     leitor* meuLeitor = new leitor();
     meuLeitor->leArquivoCandidatos(caminhoArquivoCandidatos, candidatos, partidos, flag);
     meuLeitor->adicionaCandidatosPartidos(candidatos, partidos);
-
-
+    meuLeitor->leArquivoVotacao(caminhoArquivoVotacao, candidatos, partidos, flag);
 
 
     /*======== Processando os dados =========*/
-    // for ()
+    // for (const auto& [chave, part] : *partidos) {
+    //     part->calculaQuantidadeDeVotos(flag);
+    // }
 
     impressora* minhaImpressora = new impressora();
 
