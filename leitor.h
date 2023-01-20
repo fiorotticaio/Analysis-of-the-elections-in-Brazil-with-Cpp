@@ -1,4 +1,5 @@
 #ifndef LEITOR_H
+#define LEITOR_H
 
 #include "candidato.h"
 #include "partido.h"

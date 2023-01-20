@@ -136,15 +136,6 @@ void leitor::leArquivoVotacao
       }
     }
   }
-  
-  // imprimindo o mapa de partidos com seus candidatos dentro (debug)
-  for (const auto& [chave, part] : *partidos) {
-    cout << part->getNome() << " : " << part->getQtdVotosNominais() << endl;
-    map<int, candidato*>* candidatosDoPartido = part->getCandidatosMap();
-    for (map<int, candidato*>::iterator it = candidatosDoPartido->begin(); it != candidatosDoPartido->end(); it++) {
-      cout << "  " << it->second->getNmUrnaCandidato() << " : " << it->second->getQtVotos() << endl;
-    }
-  }
 
   arq.close();
 }
