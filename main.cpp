@@ -22,6 +22,8 @@ int main(int argc, char* argv[]) {
         exit(1);
     }
 
+    // cout.imbue(locale("pt_BR.UTF-8"));
+
     int flag;
     
     if (strcmp(argv[1], "--estadual") == 0) flag = 7;
@@ -56,14 +58,14 @@ int main(int argc, char* argv[]) {
 
     impressora* minhaImpressora = new impressora();
     list<candidato*>* candidatosOrdenados = minhaImpressora->ordenaCandidatos(candidatos, flag, dataDaEleicao);
-    minhaImpressora->imprimeCandidatos(candidatosOrdenados);
-    // list<partido> partidosOrdenados = impressora->ordenaPartidos(partidos, flag);
-
-
+    list<partido*>* partidosOrdenados = minhaImpressora->ordenaPartidos(partidos, flag);
 
 
     /*======== Imprimindo relatórios ========*/
 
+    /* Relatório 1 */
+    minhaImpressora->imprimeRelatorio1(candidatosOrdenados, flag);
+    cout << endl;
 
 
 
@@ -90,6 +92,9 @@ int main(int argc, char* argv[]) {
     delete meuLeitor;
     delete minhaImpressora;
     delete candidatosOrdenados;
+    delete partidosOrdenados;
+
+    // locale::global(locale("C"));
 
     return 0;
 }
