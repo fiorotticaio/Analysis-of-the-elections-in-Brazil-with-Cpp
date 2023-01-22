@@ -41,8 +41,8 @@ public:
     int getQtdVotosTotal() const;
     void adicionaCandidato(candidato* candidato);
     void calculaQuantidadeDeVotos(const int& flag);
-    candidato getCandidatoMaisVotado(const list<candidato>& candidatos, const int& flag);
-    candidato getCandidatoMenosVotado(const list<candidato>& candidatos, const int& flag);
+    candidato* getCandidatoMaisVotado(list<candidato*>* candidatos, const int& flag);
+    candidato* getCandidatoMenosVotado(list<candidato*>* candidatos, const int& flag);
     void imprimeCandidatos() const;
 };
 

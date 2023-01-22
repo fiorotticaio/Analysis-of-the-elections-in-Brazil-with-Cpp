@@ -93,13 +93,33 @@ void partido::calculaQuantidadeDeVotos(const int& flag) {
     this->qtdVotosTotal = this->qtdVotosLegenda + this->qtdVotosNominais;
 }
 
-// candidato partido::getCandidatoMaisVotado(const list<candidato>& candidatos, const int& flag) {
-//     // retorna o candidato mais votado do partido
-// }
+candidato* partido::getCandidatoMaisVotado(list<candidato*>* candidatos, const int& flag) {
+    candidato* maisVotado = NULL;
+    for (auto cand : *candidatos) {
+        if (cand->getCdCargo() != flag) continue;
 
-// candidato partido::getCandidatoMenosVotado(const list<candidato> &candidatos, const int &flag) {
-//     // retorna o candidato menos votado do partido
-// }
+        if (maisVotado == NULL) {
+            maisVotado = cand;
+        } else if (cand->getQtVotos() > maisVotado->getQtVotos()) {
+            maisVotado = cand;
+        }
+    }
+    return maisVotado;
+}
+
+candidato* partido::getCandidatoMenosVotado(list<candidato*>* candidatos, const int &flag) {
+    candidato* menosVotado = NULL;
+    for (auto cand : *candidatos) {
+        if (cand->getCdCargo() != flag) continue;
+
+        if (menosVotado == NULL) {
+            menosVotado = cand;
+        } else if (cand->getQtVotos() < menosVotado->getQtVotos()) {
+            menosVotado = cand;
+        }
+    }
+    return menosVotado;
+}
 
 /* Debug */
 void partido::imprimeCandidatos() const {
