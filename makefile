@@ -48,3 +48,6 @@ runestadual: $(EXECUTAVEL)
 # comando para limpeza
 clean:
 	@rm *.o $(EXECUTAVEL)
+
+val:
+	@valgrind --leak-check=full --show-leak-kinds=all ./$(EXECUTAVEL) --estadual in/candidatos.csv in/votacao.csv 02/10/2022
