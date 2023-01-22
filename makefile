@@ -59,4 +59,4 @@ test:
 	./deputados --estadual consulta_cand_2022_ES.csv votacao_secao_2022_ES.csv 02/10/2022
 
 val:
-	valgrind --leak-check=full --show-leak-kinds=all ./deputados --estadual consulta_cand_2022_ES.csv votacao_secao_2022_ES.csv 02/10/2022
+	valgrind --leak-check=full --show-leak-kinds=all ./deputados --estadual in/candidatos.csv in/votacao.csv 02/10/2022
