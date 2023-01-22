@@ -10,6 +10,7 @@
 #include <iomanip>
 #include <map>
 #include <vector>
+#include <locale>
 
 
 using namespace std;
@@ -22,7 +23,9 @@ int main(int argc, char* argv[]) {
         exit(1);
     }
 
-    // cout.imbue(locale("pt_BR.UTF-8"));
+    /* configurando a saída para a formatação brasileira */
+    // locale loc("pt_BR.UTF-8");
+    // cout.imbue(loc);
 
     int flag;
     
@@ -129,7 +132,9 @@ int main(int argc, char* argv[]) {
     delete partidosOrdenados;
     delete partidosOrdenadosMaiorCand;
 
-    // locale::global(locale("C"));
+    /* voltando a localidade para o normal para evitar o vazamento de memória */
+    // locale loc2("C");
+    // cout.imbue(loc2);
 
     return 0;
 }
