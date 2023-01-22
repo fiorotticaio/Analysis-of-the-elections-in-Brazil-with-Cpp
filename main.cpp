@@ -67,11 +67,45 @@ int main(int argc, char* argv[]) {
     minhaImpressora->imprimeRelatorio1(candidatosOrdenados, flag);
     cout << endl;
 
+    /* Relatório 2 */
+    minhaImpressora->imprimeRelatorio2(candidatosOrdenados, flag);
+    cout << endl;
 
+    /* Relatório 3 */
+    minhaImpressora->imprimeRelatorio3(candidatosOrdenados, flag);
+    cout << endl;
+
+    /* Relatório 4 */
+    minhaImpressora->imprimeRelatorio4(candidatosOrdenados, flag);
+    cout << endl;
+
+    /* Relatório 5 */
+    minhaImpressora->imprimeRelatorio5(candidatosOrdenados, flag);
+    cout << endl;
+
+    /* Relatório 6 */
+    minhaImpressora->imprimeRelatorio6(partidosOrdenados, flag);
+    cout << endl;
+
+    /* Relatório 8 */
+    list<partido*>* partidosOrdenadosMaiorCand = minhaImpressora->ordenaPartidosPorMaiorVotoCandidato(partidosOrdenados, flag);
+    minhaImpressora->imprimeRelatorio8(partidosOrdenadosMaiorCand, flag, dataDaEleicao);
+    cout << endl;
+
+    /* Relatório 9 */
+    minhaImpressora->imprimeRelatorio9(candidatosOrdenados, flag, dataDaEleicao);
+    cout << endl;
+
+    /* Relatório 10 */
+    minhaImpressora->imprimeRelatorio10(candidatosOrdenados, flag);
+    cout << endl;
+
+    /* Relatório 11 */
+    minhaImpressora->imprimeRelatorio11(partidosOrdenados, flag);
+    cout << endl;
 
 
     /*======== Liberando toda a memória alocada ========*/
-    // tudo que criou com o "new" precisa ser deletado
 
     /* deletando os partidos */
     map<int, partido*>::iterator it;
@@ -93,6 +127,7 @@ int main(int argc, char* argv[]) {
     delete minhaImpressora;
     delete candidatosOrdenados;
     delete partidosOrdenados;
+    delete partidosOrdenadosMaiorCand;
 
     // locale::global(locale("C"));
 
