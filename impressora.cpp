@@ -4,9 +4,19 @@ void impressora::setNumeroDeVagas(const int &numeroDeVagas) {
     this->numeroDeVagas = numeroDeVagas;
 }
 
-// list<candidato> impressora::ordenaPartidosPorMaiorVotoCandidato(const list<partido> &partidos, const int &flag) {
-//     // ordena partidos por maior votos de candidato
-// }
+list<partido*>* impressora::ordenaPartidosPorMaiorVotoCandidato(list<partido*>* partidos, const int &flag) {
+    /* criando uma lista de partidos com base em outra */
+    list<partido*>* partidosOrdenadosMaiorCand = new list<partido*>();
+    for (auto part : *partidos) {
+        partidosOrdenadosMaiorCand->push_back(part);
+    }
+
+    partidosOrdenadosMaiorCand->sort([](partido* a, partido* b) {
+        return a->getMaiorQtdDeVotosDeUmCandidato() > b->getMaiorQtdDeVotosDeUmCandidato();
+    });
+
+    return partidosOrdenadosMaiorCand;
+}
 
 list<partido*>* impressora::ordenaPartidos(map<int, partido*>* partidos, const int &flag) {
     /* criando uma lista de partidos com base no mapa */
@@ -111,15 +121,17 @@ void impressora::imprimeRelatorio2(list<candidato*>* candidatos, const int &flag
     int i = 1;
 
     for (auto c : *candidatos) {
-        if (c->getCdCargo() != flag || i < this->numeroDeVagas || (c->getCdSitTotTurno() != 2 && c->getCdSitTotTurno() != 3)) {
-            this->imprimeCandidato(c, i);
-            i++;
-        }
+        if (
+            c->getCdCargo() != flag || i > this->numeroDeVagas ||
+            (c->getCdSitTotTurno() != 2 && c->getCdSitTotTurno() != 3)
+        ) continue;
+        this->imprimeCandidato(c, i);
+        i++;
     }
 }
 
 void impressora::imprimeRelatorio3(list<candidato*>* candidatos, const int &flag) {
-    cout << "Candidatos mais votados (em ordem decrescente de votação e respeitando número de vagas):";
+    cout << "Candidatos mais votados (em ordem decrescente de votação e respeitando número de vagas):" << endl;
     
     int i = 1;
 
@@ -146,7 +158,6 @@ void impressora::imprimeRelatorio5(list<candidato*>* candidatos, const int &flag
     cout << "(com sua posição no ranking de mais votados)\n";
 
     for (auto c : *candidatos) {
-            
         if (
             c->getCdCargo() == flag &&
             (c->getCdSitTotTurno() == 2 || c->getCdSitTotTurno() == 3) &&
@@ -162,45 +173,47 @@ void impressora::imprimeRelatorio6(list<partido*>* partidos, const int &flag) {
 
     int i = 1;
 
-    cout.imbue(locale("pt_BR.UTF-8"));
-
     for (auto p : *partidos) {
         cout << i << " - " << p->getSigla() << " - " << p->getNumero() << ", " << p->getQtdVotosTotal();
         p->getQtdVotosTotal() > 1 ? cout << " votos " : cout << " voto ";
         cout << "(" << p->getQtdVotosNominais();
         p->getQtdVotosNominais() > 1 ? cout << " nominais " : cout << " nominal ";
-        cout << "e" << p->getQtdVotosLegenda() << " de legenda), " << p->getQtdCandidatosEleitos();
+        cout << "e " << p->getQtdVotosLegenda() << " de legenda), " << p->getQtdCandidatosEleitos();
         p->getQtdCandidatosEleitos() > 1 ? cout << " candidatos eleitos\n" : cout << " candidato eleito\n";
 
         i++;
     }
 }
 
-// void impressora::imprimeRelatorio8(list<partido*>* partidos, const int &flag) {
-//     cout << "Primeiro e último colocados de cada partido:\n";
+void impressora::imprimeRelatorio8(list<partido*>* partidos, const int &flag, const string& dtEleicao) {
+    cout << "Primeiro e último colocados de cada partido:\n";
 
-//     int i = 1;
+    int i = 1;
 
-//     for (auto p : *partidos) {
+    for (auto p : *partidos) {
 
-//         if (p->getQtdVotosNominais() == 0) continue;
+        /* Partidos que não possuírem candidatos com um número positivo de votos válidos devem ser ignorados */
+        if (p->getQtdVotosNominais() == 0) continue;
 
-//         // FIXME: o tipo de alocação aqui (e em outros lugares) vai mudar
-//         list<candidato*> candidatosOrdenados = this->ordenaCandidatos(p->getCandidatosMap(), flag);
-//         candidato candidatoMaisVotado = p->getCandidatoMaisVotado(candidatosOrdenados, flag);
-//         candidato candidatoMenosVotado = p->getCandidatoMenosVotado(candidatosOrdenados, flag);
+        list<candidato*>* candidatosOrdenados = this->ordenaCandidatos(p->getCandidatosMap(), flag, dtEleicao);
+        candidato* candidatoMaisVotado = p->getCandidatoMaisVotado(candidatosOrdenados, flag);
+        candidato* candidatoMenosVotado = p->getCandidatoMenosVotado(candidatosOrdenados, flag);
 
-//         cout << i << " - " << p->getSigla() << " - " << p->getNumero() << ", " << candidatoMaisVotado->getNmUrnaCandidato()
-//             << " (" << candidatoMaisVotado->getNrCandidato() << ", " << candidatoMaisVotado->getQtVotos();
-//         candidatoMaisVotado->getQtVotos() > 1 ? cout << " votos)" : cout << " voto)";
+        cout << i << " - " << p->getSigla() << " - " << p->getNumero() << ", " << candidatoMaisVotado->getNmUrnaCandidato()
+            << " (" << candidatoMaisVotado->getNrCandidato() << ", " << candidatoMaisVotado->getQtVotos();
+        candidatoMaisVotado->getQtVotos() > 1 ? cout << " votos)" : cout << " voto)";
 
-//         cout << " / ";
+        cout << " / ";
 
-//         cout << i << " - " << p->getSigla() << " - " << p->getNumero() << ", " << candidatoMenosVotado->getNmUrnaCandidato()
-//             << " (" << candidatoMenosVotado->getNrCandidato() << ", " << candidatoMenosVotado->getQtVotos();
-//         candidatoMenosVotado->getQtVotos() > 1 ? cout << " votos)\n" : cout << " voto)\n";
-//     }
-// }
+        cout << i << " - " << p->getSigla() << " - " << p->getNumero() << ", " << candidatoMenosVotado->getNmUrnaCandidato()
+            << " (" << candidatoMenosVotado->getNrCandidato() << ", " << candidatoMenosVotado->getQtVotos();
+        candidatoMenosVotado->getQtVotos() > 1 ? cout << " votos)\n" : cout << " voto)\n";
+        
+        i++;
+        delete candidatosOrdenados;
+    }
+
+}
 
 void impressora::imprimeRelatorio9(list<candidato*>* candidatos, const int &flag, const string &dtEleicao) {
     cout << "Eleitos, por faixa etária (na data da eleição):\n";
@@ -223,13 +236,17 @@ void impressora::imprimeRelatorio9(list<candidato*>* candidatos, const int &flag
 
     qtdEleitosTotal = qtdEleitosMenor30 + qtdEleitosMaior30Menor40 + qtdEleitosMaior40Menor50 + qtdEleitosMaior50Menor60 + qtdEleitosMaior60;
 
-    cout << setprecision(2) << fixed;
+    double percentMenor30 = (qtdEleitosMenor30 * 100) / (double) qtdEleitosTotal;
+    double percentMenor40 = (qtdEleitosMaior30Menor40 * 100) / (double) qtdEleitosTotal;
+    double percentMenor50 = (qtdEleitosMaior40Menor50 * 100) / (double) qtdEleitosTotal;
+    double percentMenor60 = (qtdEleitosMaior50Menor60 * 100) / (double) qtdEleitosTotal;
+    double percentMaior60 = (qtdEleitosMaior60 * 100) / (double) qtdEleitosTotal;
 
-    cout << "Idade < 30: " << qtdEleitosMenor30 << " (" << (qtdEleitosMenor30 * 100) / qtdEleitosTotal << "%)\n";
-    cout << "30 <= Idade < 40: " << qtdEleitosMaior30Menor40 << " (" << (qtdEleitosMaior30Menor40 * 100) / qtdEleitosTotal << "%)\n";
-    cout << "40 <= Idade < 50: " << qtdEleitosMaior40Menor50 << " (" << (qtdEleitosMaior40Menor50 * 100) / qtdEleitosTotal << "%)\n";
-    cout << "50 <= Idade < 60: " << qtdEleitosMaior50Menor60 << " (" << (qtdEleitosMaior50Menor60 * 100) / qtdEleitosTotal << "%)\n";
-    cout << "60 <= Idade: " << qtdEleitosMaior60 << " (" << (qtdEleitosMaior60 * 100) / qtdEleitosTotal << "%)\n";
+    cout << "      Idade < 30: " << qtdEleitosMenor30 << " (" << fixed << setprecision(2) << percentMenor30 << "%)\n";
+    cout << "30 <= Idade < 40: " << qtdEleitosMaior30Menor40 << " (" << fixed << setprecision(2) << percentMenor40 << "%)\n";
+    cout << "40 <= Idade < 50: " << qtdEleitosMaior40Menor50 << " (" << fixed << setprecision(2) << percentMenor50 << "%)\n";
+    cout << "50 <= Idade < 60: " << qtdEleitosMaior50Menor60 << " (" << fixed << setprecision(2) << percentMenor60 << "%)\n";
+    cout << "60 <= Idade     : " << qtdEleitosMaior60 << " (" << fixed << setprecision(2) << percentMaior60 << "%)\n";
 }
 
 void impressora::imprimeRelatorio10(list<candidato*>* candidatos, const int &flag) {
@@ -249,10 +266,11 @@ void impressora::imprimeRelatorio10(list<candidato*>* candidatos, const int &fla
 
     qtdEleitosTotal = qtdEleitosFeminino + qtdEleitosMasculino;
 
-    cout << setprecision(2) << fixed;
+    double percentFeminino = (qtdEleitosFeminino * 100) / (double) qtdEleitosTotal;
+    double percentMasculino = (qtdEleitosMasculino * 100) / (double) qtdEleitosTotal;
 
-    cout << "Feminino: " << qtdEleitosFeminino << " (" << (qtdEleitosFeminino * 100) / qtdEleitosTotal << "%)\n";
-    cout << "Masculino: " << qtdEleitosMasculino << " (" << (qtdEleitosMasculino * 100) / qtdEleitosTotal << "%)\n";
+    cout << "Feminino:  " << qtdEleitosFeminino << " (" << fixed << setprecision(2) << percentFeminino << "%)\n";
+    cout << "Masculino: " << qtdEleitosMasculino << " (" << fixed << setprecision(2) << percentMasculino << "%)\n";
 }
 
 void impressora::imprimeRelatorio11(list<partido*>* partidos, const int &flag) {
@@ -266,9 +284,12 @@ void impressora::imprimeRelatorio11(list<partido*>* partidos, const int &flag) {
         qtdVotosTotaisDeTodosOsPartidos += p->getQtdVotosTotal();
     }
 
-    cout << setprecision(2) << fixed;
+    double percentVotosNominais = (qtdVotosNominaisDeTodosOsPartidos * 100) / (double) qtdVotosTotaisDeTodosOsPartidos;
+    double percentVotosLegenda = (qtdDeVotosDeLegendaDeTodoOsPartidos * 100) / (double) qtdVotosTotaisDeTodosOsPartidos;
 
-    cout << "Total de votos válidos: " << qtdVotosTotaisDeTodosOsPartidos << endl;
-    cout << "Total de votos nominais: " << qtdVotosNominaisDeTodosOsPartidos << "(" << (qtdVotosNominaisDeTodosOsPartidos * 100) / qtdVotosTotaisDeTodosOsPartidos << "%)\n";
-    cout << "Total de votos de legenda: " << qtdDeVotosDeLegendaDeTodoOsPartidos << "(" << (qtdDeVotosDeLegendaDeTodoOsPartidos * 100) / qtdVotosTotaisDeTodosOsPartidos << "%)\n";
+    cout << "Total de votos válidos:    " << qtdVotosTotaisDeTodosOsPartidos << endl;
+    cout << "Total de votos nominais:   " << qtdVotosNominaisDeTodosOsPartidos << " (" 
+        << fixed << setprecision(2) << percentVotosNominais << "%)\n";
+    cout << "Total de votos de legenda: " << qtdDeVotosDeLegendaDeTodoOsPartidos << " (" 
+         << fixed << setprecision(2) << percentVotosLegenda << "%)\n";
 }
