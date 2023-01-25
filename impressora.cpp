@@ -199,14 +199,26 @@ void impressora::imprimeRelatorio8(list<partido*>* partidos, const int &flag, co
         candidato* candidatoMaisVotado = p->getCandidatoMaisVotado(candidatosOrdenados, flag);
         candidato* candidatoMenosVotado = p->getCandidatoMenosVotado(candidatosOrdenados, flag);
 
-        cout << i << " - " << p->getSigla() << " - " << p->getNumero() << ", " << candidatoMaisVotado->getNmUrnaCandidato()
-            << " (" << candidatoMaisVotado->getNrCandidato() << ", " << candidatoMaisVotado->getQtVotos();
+        cout << i << " - " << p->getSigla() << " - " << p->getNumero() << ", "
+            << candidatoMaisVotado->getNmUrnaCandidato() << " (";
+        
+        cout.imbue(locale::classic());
+        cout << candidatoMaisVotado->getNrCandidato();
+        cout.imbue(locale("pt_BR.utf8"));
+
+        cout << ", " << candidatoMaisVotado->getQtVotos();
+                
         candidatoMaisVotado->getQtVotos() > 1 ? cout << " votos)" : cout << " voto)";
 
         cout << " / ";
 
-        cout << i << " - " << p->getSigla() << " - " << p->getNumero() << ", " << candidatoMenosVotado->getNmUrnaCandidato()
-            << " (" << candidatoMenosVotado->getNrCandidato() << ", " << candidatoMenosVotado->getQtVotos();
+        cout << candidatoMenosVotado->getNmUrnaCandidato() << " (";
+        
+        cout.imbue(locale::classic());
+        cout << candidatoMenosVotado->getNrCandidato();
+        cout.imbue(locale("pt_BR.utf8"));
+
+        cout << ", " << candidatoMenosVotado->getQtVotos();
         candidatoMenosVotado->getQtVotos() > 1 ? cout << " votos)\n" : cout << " voto)\n";
         
         i++;

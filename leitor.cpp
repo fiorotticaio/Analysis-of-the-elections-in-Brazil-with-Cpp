@@ -13,6 +13,9 @@ void leitor::leArquivoCandidatos(
     exit(1);
   }
 
+  // FIXME: tentando ler os arquivos como ISO
+
+  // arq.imbue(locale(locale(), new codecvt_byname<wchar_t, char, mbstate_t>("iso-8859-1"))); 
   string linha;
 
   getline(arq, linha); // descarta a primeira linha

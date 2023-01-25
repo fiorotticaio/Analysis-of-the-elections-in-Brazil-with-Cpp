@@ -43,8 +43,8 @@ int main(int argc, char* argv[]) {
     }
 
     /*=========== Criando variáveis importantes (ponteiro para maps) ===========*/
-    map<int, candidato*>* candidatos = new map<int, candidato*>; // <NR_CANDIDATO, CANDIDATO>
-    map<int, partido*>* partidos = new map<int, partido*>; // <NR_PARTIDO, PARTIDO>
+    map<int, candidato*>* candidatos = new map<int, candidato*>;    // <NR_CANDIDATO, CANDIDATO>
+    map<int, partido*>* partidos = new map<int, partido*>;          // <NR_PARTIDO, PARTIDO>
     
     
     /*======= Leitura dos dados ===========*/
@@ -65,6 +65,16 @@ int main(int argc, char* argv[]) {
 
 
     /*======== Imprimindo relatórios ========*/
+
+    // FIXME: analisar saida fora do utf-8
+
+    try { 
+        cout.imbue(locale("pt_BR.utf8"));
+    } catch (const runtime_error& e) {
+        cout << "Locale pt_BR.utf8 is not available: " << e.what() << endl;
+        exit(1);
+    }
+  
 
     /* Relatório 1 */
     minhaImpressora->imprimeRelatorio1(candidatosOrdenados, flag);
