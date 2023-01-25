@@ -32,6 +32,7 @@ public:
         const int& flag
     );
     void adicionaCandidatosPartidos(map<int, candidato*>* candidatos, map<int, partido*>* partidos);
+    string convert_iso88591_to_utf8(string &str);
 };
 
 #endif // !LEITOR_H
