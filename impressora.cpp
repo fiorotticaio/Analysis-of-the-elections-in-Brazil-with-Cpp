@@ -54,7 +54,7 @@ list<candidato*>* impressora::ordenaCandidatos
             /* caso tenham o mesmo numero de votos, o mais velho ganha */
             int idadeA = a->calculaIdade(dtEleicao);
             int idadeB = b->calculaIdade(dtEleicao);
-            return idadeA > idadeB;
+            return idadeA < idadeB;
         } else {
             return a->getQtVotos() > b->getQtVotos();
         }
