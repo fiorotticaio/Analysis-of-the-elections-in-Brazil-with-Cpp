@@ -105,13 +105,10 @@ int candidato::getCdCargo() const {
 
 int candidato::calculaIdade(const string& dtEleicao) {
 
-    // dd/mm/aaaa
-
     int diaEleicao = stoi(dtEleicao.substr(0, 1));
     int mesEleicao = stoi(dtEleicao.substr(3, 4));
     int anoEleicao = stoi(dtEleicao.substr(6, 9));
 
-    //FIXME: verificar se a os intervalos estão corretos
     int diaNascimento = stoi(this->dtNascimento.substr(0, 1));
     int mesNascimento = stoi(this->dtNascimento.substr(3, 4));
     int anoNascimento = stoi(this->dtNascimento.substr(6, 9));
@@ -121,7 +118,7 @@ int candidato::calculaIdade(const string& dtEleicao) {
     if (mesEleicao < mesNascimento) {
         idade--;
     } else if (mesEleicao == mesNascimento) {
-        if (diaEleicao < diaNascimento) {
+        if (diaEleicao <= diaNascimento) {
             idade--;
         }
     }
