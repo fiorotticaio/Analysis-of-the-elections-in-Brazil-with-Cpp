@@ -18,14 +18,12 @@ using namespace std;
 int main(int argc, char* argv[]) {
 
     /*======== Recebendo dados da entrada padrão =========*/
+    
     if (argc < 4) {
         cout << "Use: ./deputados <opção_de_cargo> <caminho_arquivo_candidatos> <caminho_arquivo_votacao> <data>";
         exit(1);
     }
 
-    /* configurando a saída para a formatação brasileira */
-    // locale loc("pt_BR.UTF-8");
-    // cout.imbue(loc);
 
     int flag;
     
@@ -33,14 +31,38 @@ int main(int argc, char* argv[]) {
     else if (strcmp(argv[1], "--federal") == 0) flag = 6;
     else flag = 0;
 
-    string caminhoArquivoCandidatos = argv[2];
-    string caminhoArquivoVotacao = argv[3];
-    string dataDaEleicao = argv[4];
-
     if (flag != 6 && flag != 7) {
         cout << "Código de deputado não reconhecido" << endl;
         exit(1);
     }
+
+
+    bool dataEhValida = true;
+    string dataDaEleicao = argv[4];
+    if (dataDaEleicao.length()<10) dataEhValida=false;
+    else {
+        int diaEleicao = stoi(dataDaEleicao.substr(0, 1));
+        int mesEleicao = stoi(dataDaEleicao.substr(3, 4));
+        int anoEleicao = stoi(dataDaEleicao.substr(6, 9));
+        if (diaEleicao<0 || diaEleicao>31) dataEhValida=false;
+        if (mesEleicao<0 || mesEleicao>12) dataEhValida=false;
+        if (anoEleicao<0) dataEhValida=false;
+    }
+
+    if (!dataEhValida) {
+        cout << "Data de eleição inválida" << endl;
+        exit(1);
+    }
+
+
+
+    string caminhoArquivoCandidatos = argv[2];
+    string caminhoArquivoVotacao = argv[3];
+
+
+    /* configurando a saída para a formatação brasileira */
+    // locale loc("pt_BR.UTF-8");
+    // cout.imbue(loc);
 
     /*=========== Criando variáveis importantes (ponteiro para maps) ===========*/
     map<int, candidato*>* candidatos = new map<int, candidato*>;    // <NR_CANDIDATO, CANDIDATO>
