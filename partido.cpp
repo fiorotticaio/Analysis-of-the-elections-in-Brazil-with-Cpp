@@ -1,6 +1,10 @@
 #include "partido.h"
 
-partido::partido(const int &numero, const string &sigla, const string &nome) {
+partido::partido(
+    const int &numero,
+    const string &sigla,
+    const string &nome
+) {
     this->candidatos = new map<int, candidato*>(); 
     this->numero = numero;
     this->sigla = sigla;
