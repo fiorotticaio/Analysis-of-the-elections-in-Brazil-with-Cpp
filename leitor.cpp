@@ -91,8 +91,8 @@ void leitor::leArquivoVotacao
   getline(arq, linha); // descarta a primeira linha
   while (getline(arq, linha)) { // linhas
     vector<string> infoVotacao;       
-    stringstream ss(convert_iso88591_to_utf8(linha));
-    
+    linha = convert_iso88591_to_utf8(linha);
+    stringstream ss(linha);
     string campo;
     while (getline(ss, campo, ';')) { // colunas
       campo = campo.substr(1, campo.length()-2); // removendo as aspas
