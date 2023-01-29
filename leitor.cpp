@@ -152,13 +152,11 @@ void leitor::adicionaCandidatosPartidos(map<int, candidato*>* candidatos, map<in
 
 string leitor::convert_iso88591_to_utf8(string &str) {
     string saida;
-    for (string::iterator it = str.begin(); it != str.end(); ++it)
-    {
+    for (string::iterator it = str.begin(); it != str.end(); ++it) {
         uint8_t simbolo = *it;
         if (simbolo < 0x80) {
             saida.push_back(simbolo);
-        }
-        else {
+        } else {
             saida.push_back(0xc0 | simbolo >> 6);
             saida.push_back(0x80 | (simbolo & 0x3f));
         }
