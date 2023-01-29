@@ -199,25 +199,54 @@ void impressora::imprimeRelatorio8(list<partido*>* partidos, const int &flag, co
         candidato* candidatoMaisVotado = p->getCandidatoMaisVotado(candidatosOrdenados, flag);
         candidato* candidatoMenosVotado = p->getCandidatoMenosVotado(candidatosOrdenados, flag);
 
+
+        /* 
+         impressão das seguintes informações do candidato (mais votado):
+            - posição no ranking
+            - sigla do partido
+            - número do partido
+            - nome do candidato
+        */
+            
         cout << i << " - " << p->getSigla() << " - " << p->getNumero() << ", "
             << candidatoMaisVotado->getNmUrnaCandidato() << " (";
         
+
+        /* 
+         impressão das seguintes informações do candidato (mais votado):
+            - código do candidato
+        */
         cout.imbue(locale::classic());
         cout << candidatoMaisVotado->getNrCandidato();
         cout.imbue(locale("pt_BR.utf8"));
-
+        
+        /* 
+         impressão das seguintes informações do candidato (mais votado):
+            - número de votos
+        */
         cout << ", " << candidatoMaisVotado->getQtVotos();
-                
         candidatoMaisVotado->getQtVotos() > 1 ? cout << " votos)" : cout << " voto)";
-
         cout << " / ";
 
+        /* 
+         impressão das seguintes informações do candidato (menos votado):
+            - nome do candidato
+        */
         cout << candidatoMenosVotado->getNmUrnaCandidato() << " (";
         
+
+        /* 
+         impressão das seguintes informações do candidato (menos votado):
+            - número do candidato
+        */
         cout.imbue(locale::classic());
         cout << candidatoMenosVotado->getNrCandidato();
         cout.imbue(locale("pt_BR.utf8"));
-
+        
+        /* 
+         impressão das seguintes informações do candidato (menos votado):
+            - número de votos
+        */
         cout << ", " << candidatoMenosVotado->getQtVotos();
         candidatoMenosVotado->getQtVotos() > 1 ? cout << " votos)\n" : cout << " voto)\n";
         

@@ -60,10 +60,6 @@ int main(int argc, char* argv[]) {
     string caminhoArquivoVotacao = argv[3];
 
 
-    /* configurando a saída para a formatação brasileira */
-    // locale loc("pt_BR.UTF-8");
-    // cout.imbue(loc);
-
     /*=========== Criando variáveis importantes (ponteiro para maps) ===========*/
     map<int, candidato*>* candidatos = new map<int, candidato*>;    // <NR_CANDIDATO, CANDIDATO>
     map<int, partido*>* partidos = new map<int, partido*>;          // <NR_PARTIDO, PARTIDO>
@@ -87,8 +83,6 @@ int main(int argc, char* argv[]) {
 
 
     /*======== Imprimindo relatórios ========*/
-
-    // FIXME: analisar saida fora do utf-8
 
     try { 
         cout.imbue(locale("pt_BR.utf8"));
@@ -165,8 +159,7 @@ int main(int argc, char* argv[]) {
     delete partidosOrdenadosMaiorCand;
 
     /* voltando a localidade para o normal para evitar o vazamento de memória */
-    // locale loc2("C");
-    // cout.imbue(loc2);
+    cout.imbue(locale::classic());
 
     return 0;
 }
