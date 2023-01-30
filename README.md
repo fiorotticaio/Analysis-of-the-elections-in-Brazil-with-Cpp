@@ -2,8 +2,9 @@
 
 ## BUGS
 ### Se encontrar algum bug, por favor reporte aqui.
-> Problemas de dependência (includes) entre candidato e partido <br>
 
-> Saber onde trocar para ponteiros <br>
+- [x] ~~Problemas de dependência (includes) entre candidato e partido~~
 
-> Como imprimir os números conforme a localidade <br>
+- [x] ~~Como imprimir os números conforme a localidade~~
+
+- [ ] Saber onde trocar para ponteiros
