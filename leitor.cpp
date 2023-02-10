@@ -17,8 +17,9 @@ void leitor::leArquivoCandidatos(
 
   getline(arq, linha); // descarta a primeira linha
   while (getline(arq, linha)) { // linhas
-    vector<string> infoCandidato;       
+    linha = convert_iso88591_to_utf8(linha);
     stringstream ss(linha);
+    vector<string> infoCandidato;       
     string campo;
     while (getline(ss, campo, ';')) { // colunas
       campo = campo.substr(1, campo.length()-2); // removendo as aspas
@@ -90,6 +91,7 @@ void leitor::leArquivoVotacao
   getline(arq, linha); // descarta a primeira linha
   while (getline(arq, linha)) { // linhas
     vector<string> infoVotacao;       
+    linha = convert_iso88591_to_utf8(linha);
     stringstream ss(linha);
     string campo;
     while (getline(ss, campo, ';')) { // colunas
@@ -146,4 +148,18 @@ void leitor::adicionaCandidatosPartidos(map<int, candidato*>* candidatos, map<in
     part->adicionaCandidato(cand);
     cand->setPartidoCandidato(part);
   }
+}
+
+string leitor::convert_iso88591_to_utf8(string &str) {
+    string saida;
+    for (string::iterator it = str.begin(); it != str.end(); ++it) {
+        uint8_t simbolo = *it;
+        if (simbolo < 0x80) {
+            saida.push_back(simbolo);
+        } else {
+            saida.push_back(0xc0 | simbolo >> 6);
+            saida.push_back(0x80 | (simbolo & 0x3f));
+        }
+    }
+    return saida;
 }

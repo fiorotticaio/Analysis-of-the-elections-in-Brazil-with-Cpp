@@ -14,7 +14,7 @@ class candidato {
 
     /* arquivo dos candidatos */
     int nrFederacaoPartidoCandidato = 0;    // -1: candidato em partido isolado    
-    bool apenasVotosDeLegenda;           // Caso esteja "Válido (legenda)" no campo NM_TIPO_DESTINACAO_VOTOS
+    bool apenasVotosDeLegenda;              // Caso esteja "Válido (legenda)" no campo NM_TIPO_DESTINACAO_VOTOS
     int cdDetalheSituacaoCand = 0;          // processar apenas os candidatos com 2 ou 16 (candidatura deferida)
     int nrPartidoCandidato = 0;             // Número do partido
     

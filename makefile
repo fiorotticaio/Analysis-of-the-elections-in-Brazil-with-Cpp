@@ -40,10 +40,10 @@ $(EXECUTAVEL): $(OBJETOS)
 
 # comandos para execução
 runfederal: $(EXECUTAVEL)
-	@./$(EXECUTAVEL) --federal consulta_cand_2022_ES.csv votacao_secao_2022_ES.csv 02/10/2022
+	@./$(EXECUTAVEL) --federal candidatos.csv votacao.csv 02/10/2022
 
 runestadual: $(EXECUTAVEL)
-	@./$(EXECUTAVEL) --estadual consulta_cand_2022_ES.csv votacao_secao_2022_ES.csv 02/10/2022
+	@./$(EXECUTAVEL) --estadual candidatos.csv votacao.csv 02/10/2022
 
 # comando para limpeza
 clean:
